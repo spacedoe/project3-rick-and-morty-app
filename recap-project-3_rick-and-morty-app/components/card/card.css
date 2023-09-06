@@ -1,3 +1,8 @@
+.card-section {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+}
 .card-container {
   margin-bottom: 10px;
 }
