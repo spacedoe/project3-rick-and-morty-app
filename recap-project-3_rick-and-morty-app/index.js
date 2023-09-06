@@ -6,7 +6,6 @@ const searchBarContainer = document.querySelector(
 const searchBar = document.querySelector('[data-js="search-bar"]');
 
 export const cardSection = document.querySelector('[data-js="card-section"]');
-const cardContainer = document.querySelector('[data-js="card-container"]');
 
 const navigation = document.querySelector('[data-js="navigation"]');
 const prevButton = document.querySelector('[data-js="button-prev"]');
@@ -26,7 +25,10 @@ async function fetchCharacters() {
     if (response.ok) {
       const data = await response.json();
       const cards = data.results;
-      cards.forEach((card) => createCharacterCard(card));
+      cards.forEach((card) => {
+        let cardContainer = createCharacterCard(card);
+        cardSection.appendChild(cardContainer);
+      });
     } else {
       console.log("Bad response!");
     }
@@ -36,4 +38,3 @@ async function fetchCharacters() {
 }
 
 fetchCharacters();
-
