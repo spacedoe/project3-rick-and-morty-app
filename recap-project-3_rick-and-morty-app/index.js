@@ -24,8 +24,9 @@ const maxPage = 42;
 export let page = 1;
 pagination.innerHTML = `${page} / ${maxPage}`;
 const searchQuery = "";
-nextButtonClick();
-prevButtonClick()
+
+
+
 async function fetchCharacters() {
   try {
     console.log(page);
@@ -51,3 +52,6 @@ async function fetchCharacters() {
 fetchCharacters();
 
 
+
+prevButton.addEventListener("click", onClick)
+nextButton.addEventListener("click", onClick)
