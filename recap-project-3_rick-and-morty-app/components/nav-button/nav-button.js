@@ -1,19 +1,10 @@
-import {
-  cardContainer,
-  nextButton,
-  prevButton,
-  page,
-  pagination,
-} from "../../index.js";
+export function createButton(text, buttonClass2, onClick) {
+  const button = document.createElement("button");
+  button.textContent = text;
+  button.classList.add("button");
+  button.classList.add(buttonClass2);
 
-export function onClick(props) {
-  if (props) {
-    return page++;
-  } else {
-    return page--;
-  }
-  page < 42 ? (nextButton.disabled = false) : (nextButton.disabled = true);
-  cardContainer.innerHTML = "";
-  fetchCharacters();
-  pagination.innerHTML = `${page} / ${maxPage}`;
+  button.addEventListener("click", onClick);
+
+  return button;
 }
