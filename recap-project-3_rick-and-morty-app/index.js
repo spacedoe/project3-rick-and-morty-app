@@ -1,9 +1,4 @@
 import { createCharacterCard } from "./components/card/card.js";
-// import { nextButton, prevButton } from "./components/nav-button/nav-button.js";
-import {
-  nextButtonClick,
-  prevButtonClick
-} from "./components/nav-button/nav-button.js";
 
 const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
@@ -20,16 +15,13 @@ export const nextButton = document.querySelector('[data-js="button-next"]');
 export const pagination = document.querySelector('[data-js="pagination"]');
 
 // States
-const maxPage = 42;
+export const maxPage = 42;
 export let page = 1;
 pagination.innerHTML = `${page} / ${maxPage}`;
 const searchQuery = "";
 
-
-
-async function fetchCharacters() {
+export async function fetchCharacters() {
   try {
-    console.log(page);
     const response = await fetch(
       `https://rickandmortyapi.com/api/character?page=${page}`
     );
@@ -51,7 +43,23 @@ async function fetchCharacters() {
 
 fetchCharacters();
 
+nextButton.addEventListener("click", incrementPage);
+prevButton.addEventListener("click", decrementPage);
 
+function incrementPage() {
+  page++;
+  console.log(page);
+  page < 42 ? (nextButton.disabled = false) : (nextButton.disabled = true);
+  cardContainer.innerHTML = "";
+  fetchCharacters();
+  pagination.innerHTML = `${page} / ${maxPage}`;
+}
 
-prevButton.addEventListener("click", onClick)
-nextButton.addEventListener("click", onClick)
+function decrementPage() {
+  page--;
+  console.log(page);
+  page === 1 ? (prevButton.disabled = true) : (prevButton.disabled = false);
+  cardContainer.innerHTML = "";
+  fetchCharacters();
+  pagination.innerHTML = `${page} / ${maxPage}`;
+}
