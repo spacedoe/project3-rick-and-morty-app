@@ -1,7 +1,14 @@
 .button {
   border: none;
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  font-weight: bold;
+  
 }
 
 .button:hover {
-  background-color: var(--color-secondary);
+  background-color: var(--color-blue);
+  color: var(--color-primary)
+
 }

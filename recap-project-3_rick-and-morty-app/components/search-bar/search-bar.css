@@ -1,5 +1,8 @@
 .search-bar-container {
-  width: 300px;
+  align-self: center;
+  margin: 20px auto;
+  max-width: 450px;
+  width: 100vw;
 }
 
 .search-bar {
