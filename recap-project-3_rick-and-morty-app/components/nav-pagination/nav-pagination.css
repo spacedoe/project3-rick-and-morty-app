@@ -2,6 +2,7 @@
   height: 30px;
   display: grid;
   grid-template-columns: 100px 100px 100px;
+  margin: 20px auto;
 }
 
 .navigation__pagination {

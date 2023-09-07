@@ -2,16 +2,30 @@
   margin-bottom: 10px;
   display: inline-grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 10px;
+  gap: 20px;
+  
 }
 .card {
   width: 300px;
   background-color: var(--color-secondary);
-}
+  border: 3px solid var(--color-primary);
+  box-shadow: 7px 8px 5px -5px rgba(0,0,0,0.49);
+  margin: auto;
 
+
+}
+.card__image {
+  width: 100%;
+  
+}
 .card__info {
   display: grid;
   grid-template-columns: auto 1fr;
+}
+
+.card__title {
+  font-family: RickFont;
+  text-align: center;
 }
 .card__content {
   padding: 10px 20px 20px;

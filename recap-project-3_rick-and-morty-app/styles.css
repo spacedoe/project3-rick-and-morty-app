@@ -17,6 +17,8 @@
 :root {
   --color-primary: rgb(51, 51, 51);
   --color-secondary: #f6f6f6;
+  --color-blue: #35c9dd;
+  --color-yellow: #f2ee88;
   --font-family: system-ui;
 }
 
@@ -24,6 +26,11 @@ body {
   font-family: var(--font-family);
   color: var(--color-primary);
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-yellow);
+
 }
 
 main {
@@ -31,12 +38,16 @@ main {
   flex-direction: column;
   gap: 10px;
   width: 100%;
+  
 }
 
 .title {
+  margin: 20px auto;
   padding: 10px 0;
   font-family: RickFont;
-  font-size: xxx-large;
   font-size: 80px;
-  
+  text-align: center;
+
+  text-shadow: 2px 0 0 var(--color-blue), -2px 0 0 var(--color-blue), 0 2px 0 var(--color-blue), 0 -2px 0 var(--color-blue),
+    1px 1px var(--color-blue), -1px -1px 0 var(--color-blue), 1px -1px 0 var(--color-blue), -1px 1px 0 var(--color-blue);
 }
