@@ -1,33 +1,44 @@
 import { createCharacterCard } from "./components/card/card.js";
+// import { nextButton, prevButton } from "./components/nav-button/nav-button.js";
+import {
+  nextButtonClick,
+  prevButtonClick
+} from "./components/nav-button/nav-button.js";
 
 const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
 );
 const searchBar = document.querySelector('[data-js="search-bar"]');
 
-export const cardSection = document.querySelector('[data-js="card-section"]');
+export const cardContainer = document.querySelector(
+  '[data-js="card-container"]'
+);
 
 const navigation = document.querySelector('[data-js="navigation"]');
-const prevButton = document.querySelector('[data-js="button-prev"]');
-const nextButton = document.querySelector('[data-js="button-next"]');
-const pagination = document.querySelector('[data-js="pagination"]');
+export const prevButton = document.querySelector('[data-js="button-prev"]');
+export const nextButton = document.querySelector('[data-js="button-next"]');
+export const pagination = document.querySelector('[data-js="pagination"]');
 
 // States
-const maxPage = 1;
-const page = 1;
+const maxPage = 42;
+export let page = 1;
+pagination.innerHTML = `${page} / ${maxPage}`;
 const searchQuery = "";
-
-const url = "https://rickandmortyapi.com/api/character";
-
+nextButtonClick();
+prevButtonClick()
 async function fetchCharacters() {
   try {
-    const response = await fetch(url);
+    console.log(page);
+    const response = await fetch(
+      `https://rickandmortyapi.com/api/character?page=${page}`
+    );
+    console.log(response.url);
     if (response.ok) {
       const data = await response.json();
       const cards = data.results;
       cards.forEach((card) => {
-        let cardContainer = createCharacterCard(card);
-        cardSection.appendChild(cardContainer);
+        let cardElement = createCharacterCard(card);
+        cardContainer.append(cardElement);
       });
     } else {
       console.log("Bad response!");
@@ -38,3 +49,5 @@ async function fetchCharacters() {
 }
 
 fetchCharacters();
+
+
