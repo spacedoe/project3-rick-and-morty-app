@@ -12,9 +12,7 @@ export const cardContainer = document.querySelector(
   '[data-js="card-container"]'
 );
 
-
 export const navigation = document.querySelector('[data-js="navigation"]');
-
 
 // States
 export const maxPage = 42;
@@ -36,6 +34,12 @@ export async function fetchCharacters(searchQuery) {
         })
         .join("");
       cardContainer.innerHTML = characterCards;
+
+      if (page === 1) {
+        prevButton.disabled = true;
+      } else if (page === maxPage) {
+        nextButton.disabled = true;
+      }
     } else {
       console.log("Bad response!");
     }
@@ -52,7 +56,7 @@ searchBar.addEventListener("submit", (event) => {
 });
 
 const prevButton = createButton("previous", "button--prev", decrementPage);
-const pagination = createPagination(`${page} / ${maxPage}`)
+const pagination = createPagination(`${page} / ${maxPage}`);
 const nextButton = createButton("next", "button--next", incrementPage);
 
 navigation.append(prevButton);
@@ -60,31 +64,22 @@ navigation.append(pagination);
 navigation.append(nextButton);
 
 function incrementPage() {
-  page++;
-  if (page === 42) {
-    nextButton.disabled = true;
-  } else {
-    nextButton.disabled = false;
+  if (page < 42) {
+    page++;
+    cardContainer.innerHTML = "";
+    fetchCharacters(searchQuery);
+    pagination.innerHTML = `${page} / ${maxPage}`;
     prevButton.disabled = false;
   }
-  // page < 42 ? (nextButton.disabled = false) : (nextButton.disabled = true);
-  cardContainer.innerHTML = "";
-  fetchCharacters(searchQuery);
-  pagination.innerHTML = `${page} / ${maxPage}`;
 }
 
 function decrementPage() {
-  page--;
-  if (page === 1) {
-    prevButton.disabled = true;
-  } else {
-    prevButton.disabled = false;
+  if (page > 1) {
+    page--;
+    cardContainer.innerHTML = "";
+    fetchCharacters(searchQuery);
+    pagination.innerHTML = `${page} / ${maxPage}`;
     nextButton.disabled = false;
   }
-
-  // page === 1 ? (prevButton.disabled = true) : (prevButton.disabled = false);
-  cardContainer.innerHTML = "";
-  fetchCharacters(searchQuery);
-  pagination.innerHTML = `${page} / ${maxPage}`;
 }
 fetchCharacters(searchQuery);
