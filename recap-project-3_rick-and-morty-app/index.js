@@ -15,7 +15,7 @@ export const pagination = document.querySelector('[data-js="pagination"]');
 
 // States
 export const maxPage = 42;
-export let page = 1;
+export let page = 41;
 pagination.innerHTML = `${page} / ${maxPage}`;
 const searchQuery = "";
 
@@ -52,7 +52,13 @@ navigation.append(nextButton);
 function incrementPage() {
   page++;
   console.log(page);
-  page < 42 ? (nextButton.disabled = false) : (nextButton.disabled = true);
+  if (page === 42) {
+    nextButton.disabled = true;
+  } else {
+    nextButton.disabled = false;
+    prevButton.disabled = false;
+  }
+  // page < 42 ? (nextButton.disabled = false) : (nextButton.disabled = true);
   cardContainer.innerHTML = "";
   fetchCharacters();
   pagination.innerHTML = `${page} / ${maxPage}`;
@@ -61,7 +67,14 @@ function incrementPage() {
 function decrementPage() {
   page--;
   console.log(page);
-  page === 1 ? (prevButton.disabled = true) : (prevButton.disabled = false);
+  if (page === 1) {
+    prevButton.disabled = true;
+  } else {
+    prevButton.disabled = false;
+    nextButton.disabled = false;
+  }
+
+  // page === 1 ? (prevButton.disabled = true) : (prevButton.disabled = false);
   cardContainer.innerHTML = "";
   fetchCharacters();
   pagination.innerHTML = `${page} / ${maxPage}`;
