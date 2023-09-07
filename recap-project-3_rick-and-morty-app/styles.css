@@ -3,6 +3,11 @@
 @import "components/nav-button/nav-button.css";
 @import "components/nav-pagination/nav-pagination.css";
 
+@font-face {
+  font-family: RickFont;
+  src: url(./assets/get_schwifty.ttf);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -25,8 +30,13 @@ main {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 }
 
 .title {
   padding: 10px 0;
+  font-family: RickFont;
+  font-size: xxx-large;
+  font-size: 80px;
+  
 }
