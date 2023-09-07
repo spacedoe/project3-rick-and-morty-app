@@ -4,7 +4,7 @@ export function createButton(text, buttonClass2, onClick) {
   button.classList.add("button");
   button.classList.add(buttonClass2);
 
-  button.addEventListener("click", onClick)
+  button.addEventListener("click", onClick);
 
   return button;
 }
