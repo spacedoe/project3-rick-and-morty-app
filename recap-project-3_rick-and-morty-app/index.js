@@ -15,11 +15,11 @@ export const cardContainer = document.querySelector(
 export const navigation = document.querySelector('[data-js="navigation"]');
 
 // States
-export const maxPage = 42;
-export let page = 1;
+let maxPage = 1;
+let page = 1;
 let searchQuery = "";
 
-export async function fetchCharacters(searchQuery) {
+async function fetchCharacters() {
   try {
     // console.log(searchQuery);
     const response = await fetch(
@@ -34,12 +34,15 @@ export async function fetchCharacters(searchQuery) {
         })
         .join("");
       cardContainer.innerHTML = characterCards;
+      maxPage = data.info.pages;
+      pagination.textContent = `${page} / ${maxPage}`;
 
       if (page === 1) {
         prevButton.disabled = true;
       } else if (page === maxPage) {
         nextButton.disabled = true;
       }
+      console.log(page, maxPage);
     } else {
       console.log("Bad response!");
     }
@@ -68,7 +71,7 @@ function incrementPage() {
     page++;
     cardContainer.innerHTML = "";
     fetchCharacters(searchQuery);
-    pagination.innerHTML = `${page} / ${maxPage}`;
+
     prevButton.disabled = false;
   }
 }
@@ -78,7 +81,7 @@ function decrementPage() {
     page--;
     cardContainer.innerHTML = "";
     fetchCharacters(searchQuery);
-    pagination.innerHTML = `${page} / ${maxPage}`;
+
     nextButton.disabled = false;
   }
 }
