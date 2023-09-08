@@ -19,12 +19,13 @@ export const maxPage = 42;
 export let page = 1;
 let searchQuery = "";
 
-export async function fetchCharacters(searchQuery) {
+export async function fetchCharacters(page = 1, searchQuery = "") {
   try {
     // console.log(searchQuery);
     const response = await fetch(
       `https://rickandmortyapi.com/api/character?page=${page}&name=${searchQuery}`
     );
+    console.log("response", response);
     if (response.ok) {
       const data = await response.json();
       const characters = data.results;
@@ -41,6 +42,13 @@ export async function fetchCharacters(searchQuery) {
         nextButton.disabled = true;
       }
     } else {
+      cardContainer.innerHTML = ` <li class="card-not-found">
+      <div class="card__image-container">
+      <img
+      class="card__image-not-found"
+      src="./assets/notfound.gif"
+      alt="not found"
+      />`;
       console.log("Bad response!");
     }
   } catch (e) {
@@ -52,7 +60,7 @@ searchBar.addEventListener("submit", (event) => {
   event.preventDefault();
   searchQuery = event.target.query.value;
   console.log("searchQuery", searchQuery);
-  fetchCharacters(searchQuery);
+  fetchCharacters(page, searchQuery);
 });
 
 const prevButton = createButton("previous", "button--prev", decrementPage);

@@ -3,20 +3,16 @@
   display: inline-grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
-  
 }
 .card {
   width: 300px;
   background-color: var(--color-secondary);
   border: 3px solid var(--color-primary);
-  box-shadow: 7px 8px 5px -5px rgba(0,0,0,0.49);
+  box-shadow: 7px 8px 5px -5px rgba(0, 0, 0, 0.49);
   margin: auto;
-
-
 }
 .card__image {
   width: 100%;
-  
 }
 .card__info {
   display: grid;
@@ -39,4 +35,13 @@
 
 li {
   list-style: none;
+}
+
+.card-not-found {
+  margin-left: 32vw;
+}
+
+.card__image-not-found {
+  width: 400px;
+  height: 300px;
 }
