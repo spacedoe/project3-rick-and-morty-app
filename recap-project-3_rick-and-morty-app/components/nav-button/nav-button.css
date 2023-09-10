@@ -4,11 +4,10 @@
   background-color: var(--color-primary);
   color: var(--color-secondary);
   font-weight: bold;
-  
 }
 
 .button:hover {
   background-color: var(--color-blue);
-  color: var(--color-primary)
-
+  color: var(--color-primary);
+  cursor: pointer;
 }

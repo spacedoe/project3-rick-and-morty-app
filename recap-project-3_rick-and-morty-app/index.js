@@ -19,7 +19,6 @@ let maxPage = 1;
 let page = 1;
 let searchQuery = "";
 
-
 async function fetchCharacters() {
   try {
     // console.log(searchQuery);
@@ -46,18 +45,25 @@ async function fetchCharacters() {
       }
       console.log(page, maxPage);
     } else {
-      cardContainer.innerHTML = ` <li class="card-not-found">
-      <div class="card__image-container">
-      <img
-      class="card__image-not-found"
-      src="./assets/notfound.gif"
-      alt="not found"
-      />`;
+      handleError();
       console.log("Bad response!");
     }
   } catch (e) {
     console.error(e);
   }
+}
+
+function handleError() {
+  cardContainer.innerHTML = `
+  <li class="error__container">
+        <img
+        class="error__image"
+        src="./assets/rick-morty-not-found.gif"
+        alt="404 card not found"
+        />
+        <p class="error__message">Can't find such character! Try again!</p>
+    </li>
+    `;
 }
 
 searchBar.addEventListener("submit", (event) => {

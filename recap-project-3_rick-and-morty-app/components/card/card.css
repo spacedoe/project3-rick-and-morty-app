@@ -37,11 +37,17 @@ li {
   list-style: none;
 }
 
-.card-not-found {
-  margin-left: 32vw;
+.error__container {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  width: 400px;
 }
 
-.card__image-not-found {
-  width: 400px;
-  height: 300px;
+.error__image {
+  width: 100%;
+}
+
+.error__message {
+  text-align: center;
 }

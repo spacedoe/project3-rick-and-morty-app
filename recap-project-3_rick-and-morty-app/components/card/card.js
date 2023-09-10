@@ -6,7 +6,7 @@ export function createCharacterCard({
   type,
   episode,
 }) {
-  return `
+  const characterCard = `
   <li class="card">
     <div class="card__image-container">
     <img
@@ -31,4 +31,5 @@ export function createCharacterCard({
     </div>
   </li>
   `;
+  return characterCard;
 }
